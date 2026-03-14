@@ -3,7 +3,7 @@ This is an exmaples enerative UI Examples With ADK
 
 ## Demo:
 
-![Demo Video](./document/demo.mov)
+![Demo Video](./document/demo.mp4)
 
 
 ## Prerequisites
