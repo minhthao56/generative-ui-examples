@@ -1,4 +1,4 @@
-# CopilotKit <> ADK Starter
+# Generative UI Examples With ADK
 
 This is a starter template for building AI agents using Google's [ADK](https://google.github.io/adk-docs/) and [CopilotKit](https://copilotkit.ai). It provides a modern Next.js application with an integrated investment analyst agent that can research stocks, analyze market data, and provide investment insights.
 
@@ -48,14 +48,6 @@ yarn install:agent
 # Using bun
 bun run install:agent
 ```
-
-> **Note:** This will automatically setup a `.venv` (virtual environment) inside the `agent` directory.
->
-> To activate the virtual environment manually, you can run:
->
-> ```bash
-> source agent/.venv/bin/activate
-> ```
 
 3. Set up your Google API key:
 
@@ -132,5 +124,5 @@ If you encounter Python import errors:
 
 ```bash
 cd agent
-pip install -r requirements.txt
+uv sync
 ```
