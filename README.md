@@ -3,7 +3,7 @@ This is an exmaples enerative UI Examples With ADK
 
 ## Demo:
 
-[screen recording](./document/demo.mov)
+<video src="https://github.com/minhthao56/generative-ui-examples/raw/refs/heads/main/document/demo.mov" controls></video>
 
 
 ## Prerequisites
