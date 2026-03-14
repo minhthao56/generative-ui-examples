@@ -1,6 +1,10 @@
 # Generative UI Examples With ADK
+This is an exmaples enerative UI Examples With ADK
 
-This is a starter template for building AI agents using Google's [ADK](https://google.github.io/adk-docs/) and [CopilotKit](https://copilotkit.ai). It provides a modern Next.js application with an integrated investment analyst agent that can research stocks, analyze market data, and provide investment insights.
+## Demo:
+
+[screen recording](./document/demo.mov)
+
 
 ## Prerequisites
 
@@ -8,27 +12,13 @@ This is a starter template for building AI agents using Google's [ADK](https://g
 - Python 3.12+
 - Google Makersuite API Key (for the ADK agent) (see https://makersuite.google.com/app/apikey)
 - Any of the following package managers:
-  - pnpm (recommended)
-  - npm
-  - yarn
   - bun
-
-> **Note:** This repository ignores lock files (package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb) to avoid conflicts between different package managers. Each developer should generate their own lock file using their preferred package manager. After that, make sure to delete it from the .gitignore.
 
 ## Getting Started
 
 1. Install dependencies using your preferred package manager:
 
 ```bash
-# Using pnpm (recommended)
-pnpm install
-
-# Using npm
-npm install
-
-# Using yarn
-yarn install
-
 # Using bun
 bun install
 ```
@@ -36,15 +26,6 @@ bun install
 2. Install Python dependencies for the ADK agent:
 
 ```bash
-# Using pnpm
-pnpm install:agent
-
-# Using npm
-npm run install:agent
-
-# Using yarn
-yarn install:agent
-
 # Using bun
 bun run install:agent
 ```
@@ -58,15 +39,6 @@ export GOOGLE_API_KEY="your-google-api-key-here"
 4. Start the development server:
 
 ```bash
-# Using pnpm
-pnpm dev
-
-# Using npm
-npm run dev
-
-# Using yarn
-yarn dev
-
 # Using bun
 bun run dev
 ```
