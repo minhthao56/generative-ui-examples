@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { CopilotKit } from "@copilotkit/react-core";
 import "./globals.css";
 import "@copilotkit/react-ui/v2/styles.css";
 import { ThemeProvider } from "@/hooks/use-theme";
@@ -19,11 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={"antialiased"}>
         <ThemeProvider>
-          <CopilotKit runtimeUrl="/api/copilotkit" agent="my_agent">
-            {children}
-          </CopilotKit>
+          {children}
         </ThemeProvider>
-
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
-# Generative UI Examples With ADK
-This is an exmaples enerative UI Examples With ADK
+# Examples With ADK
+This exmaples ADK
 
 ## Demo:
 
