@@ -8,7 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
-import type { FeedbackItem, DiscussMessage } from "./mock-data";
+import type { FeedbackItem } from "@/lib/ai-feedback-api";
+
+interface DiscussMessage {
+  id: string;
+  role: "user" | "ai";
+  content: string;
+}
 
 interface DiscussWithAIPanelProps {
   feedbackItem: FeedbackItem;
@@ -29,6 +35,7 @@ export function DiscussWithAIPanel({
       role: "user",
       content: input.trim(),
     };
+    // TODO: Phase 4 — wire to real AI agent via CopilotKit
     const aiMsg: DiscussMessage = {
       id: `msg-ai-${Date.now()}`,
       role: "ai",
@@ -52,11 +59,8 @@ export function DiscussWithAIPanel({
             AI Tutor
           </span>
         </div>
-        <Badge
-          variant="outline"
-          className="ml-auto text-xs font-medium"
-        >
-          {feedbackItem.rubricCategory}
+        <Badge variant="outline" className="ml-auto text-xs font-medium">
+          {feedbackItem.rubric_category}
         </Badge>
       </div>
 
@@ -122,11 +126,7 @@ export function DiscussWithAIPanel({
               }
             }}
           />
-          <Button
-            size="icon"
-            onClick={handleSend}
-            disabled={!input.trim()}
-          >
+          <Button size="icon" onClick={handleSend} disabled={!input.trim()}>
             <Send className="size-4" />
           </Button>
         </div>

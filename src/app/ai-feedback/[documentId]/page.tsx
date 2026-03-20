@@ -2,15 +2,18 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, FileText, MoreVertical } from "lucide-react";
+import { ChevronLeft, FileText, Loader2, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { SubjectChip } from "@/components/ai-feedback/file-type-badge";
 import { ExtractedTextViewer } from "@/components/ai-feedback/extracted-text-viewer";
 import { FeedbackPanel } from "@/components/ai-feedback/feedback-panel";
 import { DiscussWithAIPanel } from "@/components/ai-feedback/discuss-with-ai-panel";
 import { TruncationBanner } from "@/components/ai-feedback/truncation-banner";
-import { getDocumentById } from "@/components/ai-feedback/mock-data";
-import type { FeedbackItem } from "@/components/ai-feedback/mock-data";
+import { useDocument } from "@/hooks/use-document";
+import { isProcessing } from "@/lib/ai-feedback-api";
+import type { FeedbackItem } from "@/lib/ai-feedback-api";
 
 export default function DocumentDetailPage({
   params,
@@ -18,16 +21,25 @@ export default function DocumentDetailPage({
   params: Promise<{ documentId: string }>;
 }) {
   const { documentId } = use(params);
-  const doc = getDocumentById(documentId);
+  const { document: doc, isLoading, error } = useDocument(documentId);
   const [discussItem, setDiscussItem] = useState<FeedbackItem | null>(null);
 
-  if (!doc) {
+  if (isLoading) {
+    return <DetailSkeleton />;
+  }
+
+  if (error || !doc) {
     return (
-      <div className="flex h-full items-center justify-center">
-        <p className="text-muted-foreground">Document not found.</p>
+      <div className="flex h-full flex-col items-center justify-center gap-2">
+        <p className="text-muted-foreground">{error || "Document not found."}</p>
+        <Link href="/ai-feedback">
+          <Button variant="outline" size="sm">Back to assignments</Button>
+        </Link>
       </div>
     );
   }
+
+  const stillProcessing = isProcessing(doc.status);
 
   return (
     <div className="flex h-full flex-col">
@@ -39,12 +51,11 @@ export default function DocumentDetailPage({
           </Button>
         </Link>
         <FileText className="size-4 text-muted-foreground shrink-0" />
-        <span className="text-sm font-medium truncate">{doc.title}</span>
+        <span className="text-sm font-medium truncate">
+          {doc.title || doc.file_name}
+        </span>
         <div className="ml-auto flex items-center gap-2">
-          <SubjectChip subject={doc.subject} />
-          <span className="text-xs text-muted-foreground whitespace-nowrap">
-            {doc.createdAt}
-          </span>
+          {doc.subject && <SubjectChip subject={doc.subject} />}
           <Button variant="ghost" size="icon-sm">
             <MoreVertical className="size-4" />
           </Button>
@@ -55,28 +66,63 @@ export default function DocumentDetailPage({
       <div className="flex flex-1 flex-col gap-4 overflow-hidden p-4 lg:flex-row">
         {/* Left: Extracted text */}
         <div className="flex-1 min-w-0 min-h-0">
-          <ExtractedTextViewer text={doc.extractedText} />
+          {doc.extracted_text ? (
+            <ExtractedTextViewer text={doc.extracted_text} />
+          ) : (
+            <Card className="flex h-full items-center justify-center">
+              <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                <Loader2 className="size-5 animate-spin" />
+                <p className="text-sm">Extracting text...</p>
+              </div>
+            </Card>
+          )}
         </div>
 
         {/* Right: Feedback or Discuss panel */}
         <div className="w-full shrink-0 lg:w-[420px]">
           <div className="flex h-full flex-col gap-3">
-            {doc.isTruncated && <TruncationBanner />}
+            {doc.is_truncated && <TruncationBanner />}
             <div className="flex-1 min-h-0">
-              {discussItem ? (
+              {stillProcessing ? (
+                <Card className="flex h-full items-center justify-center">
+                  <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                    <Loader2 className="size-5 animate-spin" />
+                    <p className="text-sm">Generating feedback...</p>
+                    <p className="text-xs">This may take a minute</p>
+                  </div>
+                </Card>
+              ) : discussItem ? (
                 <DiscussWithAIPanel
                   feedbackItem={discussItem}
                   onBack={() => setDiscussItem(null)}
                 />
               ) : (
                 <FeedbackPanel
-                  feedbackItems={doc.feedbackItems}
+                  feedbackItems={doc.feedback_items}
                   onDiscuss={setDiscussItem}
                 />
               )}
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function DetailSkeleton() {
+  return (
+    <div className="flex h-full flex-col">
+      <div className="flex items-center gap-3 border-b border-border px-6 py-3">
+        <Skeleton className="size-7 rounded" />
+        <Skeleton className="h-4 w-64" />
+        <div className="ml-auto flex gap-2">
+          <Skeleton className="h-5 w-16 rounded-full" />
+        </div>
+      </div>
+      <div className="flex flex-1 gap-4 p-4">
+        <Skeleton className="flex-1 rounded-lg" />
+        <Skeleton className="w-[420px] rounded-lg" />
       </div>
     </div>
   );

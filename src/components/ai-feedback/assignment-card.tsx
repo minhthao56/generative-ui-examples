@@ -6,19 +6,36 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FileTypeBadge, SubjectChip } from "./file-type-badge";
-import type { AIFeedbackDocument } from "./mock-data";
+import type { AIFeedbackDocument } from "@/lib/ai-feedback-api";
+import { isProcessing } from "@/lib/ai-feedback-api";
 
 interface AssignmentCardProps {
   document: AIFeedbackDocument;
+  onRetry?: (id: string) => void;
 }
 
-export function AssignmentCard({ document: doc }: AssignmentCardProps) {
-  if (doc.status === "uploading" || doc.status === "extracting" || doc.status === "analyzing") {
+function formatDate(isoString: string): string {
+  try {
+    const date = new Date(isoString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays < 7) return `${diffDays} days ago`;
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  } catch {
+    return isoString;
+  }
+}
+
+export function AssignmentCard({ document: doc, onRetry }: AssignmentCardProps) {
+  if (isProcessing(doc.status)) {
     return <AssignmentCardLoading document={doc} />;
   }
 
   if (doc.status === "error") {
-    return <AssignmentCardError document={doc} />;
+    return <AssignmentCardError document={doc} onRetry={onRetry} />;
   }
 
   return (
@@ -26,21 +43,27 @@ export function AssignmentCard({ document: doc }: AssignmentCardProps) {
       <Card className="h-full transition-shadow hover:shadow-md">
         <CardContent className="flex h-full flex-col gap-3 p-5">
           <div className="flex items-center justify-between">
-            <FileTypeBadge fileType={doc.fileType} />
-            <SubjectChip subject={doc.subject} />
+            <FileTypeBadge fileType={doc.file_type as "docx" | "pdf"} />
+            {doc.subject && <SubjectChip subject={doc.subject} />}
           </div>
           <div className="flex-1">
-            <h3 className="text-sm font-semibold leading-snug">{doc.title}</h3>
-            <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
-              {doc.extractedText.slice(0, 120)}...
-            </p>
+            <h3 className="text-sm font-semibold leading-snug">
+              {doc.title || doc.file_name}
+            </h3>
+            {doc.extracted_text && (
+              <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                {doc.extracted_text.slice(0, 120)}...
+              </p>
+            )}
           </div>
           <div className="flex items-center justify-between text-xs">
             <span className="flex items-center gap-1 text-primary font-medium">
               <Sparkles className="size-3" />
-              {doc.feedbackCount} AI Feedback
+              {doc.feedback_count} AI Feedback
             </span>
-            <span className="text-muted-foreground">{doc.createdAt}</span>
+            <span className="text-muted-foreground">
+              {formatDate(doc.created_at)}
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -53,7 +76,7 @@ function AssignmentCardLoading({ document: doc }: { document: AIFeedbackDocument
     <Card className="h-full">
       <CardContent className="flex h-full flex-col gap-3 p-5">
         <div className="flex items-center justify-between">
-          <FileTypeBadge fileType={doc.fileType} />
+          <FileTypeBadge fileType={doc.file_type as "docx" | "pdf"} />
           <Skeleton className="h-5 w-14 rounded-full" />
         </div>
         <div className="flex flex-1 flex-col items-center justify-center gap-2 py-4">
@@ -63,19 +86,27 @@ function AssignmentCardLoading({ document: doc }: { document: AIFeedbackDocument
           </p>
         </div>
         <div className="flex justify-end">
-          <span className="text-xs text-muted-foreground">{doc.createdAt}</span>
+          <span className="text-xs text-muted-foreground">
+            {formatDate(doc.created_at)}
+          </span>
         </div>
       </CardContent>
     </Card>
   );
 }
 
-function AssignmentCardError({ document: doc }: { document: AIFeedbackDocument }) {
+function AssignmentCardError({
+  document: doc,
+  onRetry,
+}: {
+  document: AIFeedbackDocument;
+  onRetry?: (id: string) => void;
+}) {
   return (
     <Card className="h-full border-destructive/30">
       <CardContent className="flex h-full flex-col gap-3 p-5">
         <div className="flex items-center justify-between">
-          <FileTypeBadge fileType={doc.fileType} />
+          <FileTypeBadge fileType={doc.file_type as "docx" | "pdf"} />
           {doc.subject && <SubjectChip subject={doc.subject} />}
         </div>
         <div className="flex-1">
@@ -84,15 +115,27 @@ function AssignmentCardError({ document: doc }: { document: AIFeedbackDocument }
           )}
           <div className="mt-2 flex items-center gap-1.5 text-destructive">
             <AlertCircle className="size-3.5" />
-            <p className="text-xs">{doc.errorMessage ?? "Analysis failed."}</p>
+            <p className="text-xs">
+              {doc.error_message ?? "Analysis failed."}
+            </p>
           </div>
         </div>
         <div className="flex items-center justify-between text-xs">
-          <Button variant="ghost" size="xs" className="gap-1 text-primary">
+          <Button
+            variant="ghost"
+            size="xs"
+            className="gap-1 text-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              onRetry?.(doc.id);
+            }}
+          >
             <RotateCcw className="size-3" />
             Retry
           </Button>
-          <span className="text-muted-foreground">{doc.createdAt}</span>
+          <span className="text-muted-foreground">
+            {formatDate(doc.created_at)}
+          </span>
         </div>
       </CardContent>
     </Card>

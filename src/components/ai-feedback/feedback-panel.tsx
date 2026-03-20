@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FeedbackItemCard } from "./feedback-item";
-import type { FeedbackItem } from "./mock-data";
+import type { FeedbackItem } from "@/lib/ai-feedback-api";
 
 interface FeedbackPanelProps {
   feedbackItems: FeedbackItem[];

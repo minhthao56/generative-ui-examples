@@ -4,32 +4,44 @@ import { MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import type { FeedbackItem as FeedbackItemType } from "./mock-data";
+import type { FeedbackItem } from "@/lib/ai-feedback-api";
 
-const rubricColors: Record<string, string> = {
+const RUBRIC_COLORS: Record<string, string> = {
   "Argument Structure": "text-orange-600",
   "Evidence & Sources": "text-red-600",
+  "Evidence & Analysis": "text-red-600",
+  "Evidence Quality": "text-red-600",
   "Critical Thinking": "text-blue-600",
   "Grammar & Style": "text-purple-600",
+  "Clarity & Language": "text-purple-600",
   "Data Interpretation": "text-emerald-600",
   Methodology: "text-teal-600",
+  "Scientific Accuracy": "text-cyan-600",
+  "Conclusion Quality": "text-indigo-600",
+  Structure: "text-amber-600",
+  Clarity: "text-violet-600",
+  Grammar: "text-pink-600",
 };
 
+function getRubricColor(category: string): string {
+  return RUBRIC_COLORS[category] ?? "text-primary";
+}
+
 interface FeedbackItemProps {
-  item: FeedbackItemType;
+  item: FeedbackItem;
   index: number;
-  onDiscuss: (item: FeedbackItemType) => void;
+  onDiscuss: (item: FeedbackItem) => void;
 }
 
 export function FeedbackItemCard({ item, index, onDiscuss }: FeedbackItemProps) {
-  const color = rubricColors[item.rubricCategory] ?? "text-primary";
+  const color = getRubricColor(item.rubric_category);
 
   return (
     <div className="space-y-3">
       <div className="flex items-baseline gap-2">
         <span className={`text-sm font-bold ${color}`}>{index + 1}</span>
         <Badge variant="outline" className={`text-xs font-semibold ${color} border-current/20`}>
-          {item.rubricCategory}
+          {item.rubric_category}
         </Badge>
       </div>
 
