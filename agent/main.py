@@ -12,6 +12,7 @@ from agent_proverbs import root_agent as proverbs_agent
 from agent_generative_ui import root_agent as generative_ui_agent
 from agent_ai_feedback import root_agent as ai_feedback_agent
 from agent_ai_feedback.routes import router as ai_feedback_router
+from agent_discuss import root_agent as discuss_agent
 
 load_dotenv()
 
@@ -36,6 +37,12 @@ adk_ai_feedback_agent = ADKAgent(
     session_timeout_seconds=3600,
     use_in_memory_services=True,
 )
+adk_discuss_agent = ADKAgent(
+    adk_agent=discuss_agent,
+    user_id="demo_user",
+    session_timeout_seconds=3600,
+    use_in_memory_services=True,
+)
 
 
 AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -51,6 +58,7 @@ app: FastAPI = get_fast_api_app(
 add_adk_fastapi_endpoint(app, adk_proverbs_agent, path="/adk-proverbs-agent")
 add_adk_fastapi_endpoint(app, adk_generative_ui_agent, path="/adk-generative-ui-agent")
 add_adk_fastapi_endpoint(app, adk_ai_feedback_agent, path="/adk-ai-feedback-agent")
+add_adk_fastapi_endpoint(app, adk_discuss_agent, path="/adk-discuss-agent")
 
 # Mount AI Feedback REST routes (document upload, list, status polling)
 app.include_router(ai_feedback_router)

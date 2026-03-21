@@ -93,7 +93,9 @@ export default function DocumentDetailPage({
                 </Card>
               ) : discussItem ? (
                 <DiscussWithAIPanel
+                  documentId={documentId}
                   feedbackItem={discussItem}
+                  documentText={doc.extracted_text}
                   onBack={() => setDiscussItem(null)}
                 />
               ) : (

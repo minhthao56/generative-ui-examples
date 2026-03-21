@@ -16,8 +16,10 @@ const runtime = new CopilotRuntime({
   agents: {
     // Our FastAPI endpoint URL
     my_agent: new HttpAgent({ url: "http://localhost:8000/adk-generative-ui-agent" }),
-    // AI Feedback agent — used for "Discuss with AI" feature
+    // AI Feedback agent (unused for now, kept for future)
     ai_feedback_agent: new HttpAgent({ url: "http://localhost:8000/adk-ai-feedback-agent" }),
+    // Discuss agent — AI Tutor for discussing feedback items
+    discuss_agent: new HttpAgent({ url: "http://localhost:8000/adk-discuss-agent" }),
   },
 });
 

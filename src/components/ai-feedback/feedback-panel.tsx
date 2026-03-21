@@ -13,12 +13,12 @@ interface FeedbackPanelProps {
 
 export function FeedbackPanel({ feedbackItems, onDiscuss }: FeedbackPanelProps) {
   return (
-    <Card className="flex h-full flex-col">
+    <Card className="flex h-full min-h-0 flex-col overflow-hidden">
       <div className="flex items-center gap-2 border-b border-border px-5 py-3">
         <Sparkles className="size-4 text-primary" />
         <span className="text-sm font-semibold">AI Feedback</span>
       </div>
-      <ScrollArea className="flex-1 px-5 py-4">
+      <ScrollArea className="flex-1 min-h-0 px-5 py-4">
         <div className="space-y-5">
           {feedbackItems.map((item, i) => (
             <FeedbackItemCard

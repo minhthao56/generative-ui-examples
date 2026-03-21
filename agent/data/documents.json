@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "doc-417fc764",
+    "file_name": "assignments_test.pdf",
+    "file_type": "pdf",
+    "title": "AI in Education",
+    "subject": "Computer Science",
+    "extracted_text": "1. University Essay - Social Media and Mental Health\nSocial media has become an essential part of modern life, especially among young adults.\nPlatforms allow users to connect and share experiences. However, they also contribute to negative\nmental health outcomes.\nOne major issue is social comparison. Users present idealized versions of their lives, leading others\nto feel inadequate. Studies show increased anxiety and depression with excessive use.\nOn the other hand, social media provides support networks. Many users find communities for\nencouragement.\nIn conclusion, social media has both positive and negative effects. Users should engage mindfully.\n2. University Report - Renewable Energy\nIntroduction: Renewable energy is increasingly important due to climate change.\nMethodology: Data collected from public reports.\nFindings: Solar and wind adoption increased, but costs remain barriers.\nDiscussion: Governments must provide incentives.\nConclusion: Adoption is growing but needs support.\n3. High School Essay - Homework\nHomework is something many students do not like. It causes stress and takes away relaxation time.\nSometimes homework is not useful and students copy from the internet.\nSome think homework helps practice, but too much is harmful.\n\nConclusion: Homework should be reduced or removed.\n4. Poor Assignment - Climate Change\nclimate change is bad and many people talk about it. it is because pollution and cars and factories.\nwe should stop it fast. people need to care more.\nin conclusion climate change is very bad and we need to fix it soon.\n5. Advanced Essay - AI in Education\nArtificial Intelligence is transforming education with personalized learning.\nIt adapts to individual performance and improves engagement.\nHowever, it may reduce critical thinking and raises privacy concerns.\nConclusion: AI should support, not replace, human learning.",
+    "rubric_categories": [
+      {
+        "name": "AI Concepts & Application",
+        "description": "Evaluates the depth of understanding and appropriate application of Artificial Intelligence concepts within the educational context."
+      },
+      {
+        "name": "Argument Structure & Critical Analysis",
+        "description": "Assesses the clarity, coherence, and persuasiveness of the arguments presented, including the analysis of both benefits and challenges."
+      },
+      {
+        "name": "Ethical & Societal Implications",
+        "description": "Examines the discussion of ethical considerations, privacy concerns, and broader societal impacts of AI integration in education."
+      },
+      {
+        "name": "Academic Language & Style",
+        "description": "Reviews the use of formal academic language, clarity, conciseness, grammar, and overall writing mechanics."
+      }
+    ],
+    "status": "complete",
+    "feedback_items": [
+      {
+        "id": "bc7dab8a",
+        "document_title": "AI in Education",
+        "rubric_category": "AI Concepts & Application",
+        "excerpt": "Artificial Intelligence is transforming education with personalized learning.",
+        "explanation": "This is a strong opening statement, but to demonstrate a deeper understanding of AI concepts, consider explaining *how* AI achieves personalized learning in more detail. What are the underlying AI mechanisms or technologies at play here? What specific AI techniques or functionalities enable personalized learning, and how do they function within an educational context?"
+      },
+      {
+        "id": "1bd3bde1",
+        "document_title": "AI in Education",
+        "rubric_category": "Argument Structure & Critical Analysis",
+        "excerpt": "It adapts to individual performance and improves engagement.",
+        "explanation": "You've identified key benefits of AI in education, but the argument would be more persuasive with specific examples or a brief explanation of how AI accomplishes this. Providing evidence or concrete scenarios would enhance the critical analysis. Can you provide an example of how AI adapts to individual performance, or elaborate on the mechanisms through which it improves engagement?"
+      },
+      {
+        "id": "1722465f",
+        "document_title": "AI in Education",
+        "rubric_category": "Ethical & Societal Implications",
+        "excerpt": "However, it may reduce critical thinking and raises privacy concerns.",
+        "explanation": "This sentence effectively introduces important ethical and societal challenges. To strengthen this point, elaborate on *why* or *how* AI might reduce critical thinking, and specify the types of privacy concerns that arise in educational AI applications. In what ways might AI potentially hinder critical thinking, and what are the primary privacy concerns that need to be addressed when integrating AI into education?"
+      }
+    ],
+    "feedback_count": 3,
+    "is_truncated": false,
+    "error_message": null,
+    "created_at": "2026-03-20T10:27:47.698502+00:00",
+    "file_path": "/Users/minhthao/Documents/ai-agent/generative-ui-examples/agent/uploads/doc-417fc764.pdf"
+  }
+]
