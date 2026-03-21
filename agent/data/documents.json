@@ -53,5 +53,81 @@
     "error_message": null,
     "created_at": "2026-03-20T10:27:47.698502+00:00",
     "file_path": "/Users/minhthao/Documents/ai-agent/generative-ui-examples/agent/uploads/doc-417fc764.pdf"
+  },
+  {
+    "id": "doc-669bebc7",
+    "file_name": "assignments_test_2.pdf",
+    "file_type": "pdf",
+    "title": "Collection of Student Essays",
+    "subject": "English",
+    "extracted_text": "### 1. Essay - Online Learning vs Traditional Learning\n\nOnline learning has become popular in recent years. It allows students to study from anywhere and\nat their own pace. However, traditional learning provides face-to-face interaction with teachers and\nclassmates.\n\nOne advantage of online learning is flexibility. Students can access materials anytime. However, it\nmay lead to lack of discipline.\n\nTraditional classrooms encourage participation and immediate feedback. But they may lack\nflexibility.\n\nIn conclusion, both methods have advantages, and a blended approach may be the best solution.\n\n### 2. Report - Impact of Technology on Jobs\n\nIntroduction: Technology is transforming the job market.\n\nMethodology: Data collected from industry reports.\n\nFindings: Automation replaces repetitive jobs but creates new opportunities.\n\nDiscussion: Workers need to adapt by learning new skills.\n\nConclusion: Technology changes jobs but does not eliminate them entirely.\n\n### 3. Weak Essay - School Uniforms\n\nSchool uniforms are something students wear every day. I think they are not good because\nstudents want freedom.\n\nUniforms are boring and do not let students express themselves. Many students feel unhappy.\n\nSome people say uniforms are good because they make students equal. But I still think they are\nbad.\n\nIn conclusion, school uniforms should not be required.\n\n---\n\n### 4. Very Poor Writing Sample\n\ntechnology is everywhere people use phone computer everyday it is good but also bad we need\nbalance\n\ntoo much technology make people lazy and not talk to each other\n\nwe should use technology wisely\n\n### 5. Analytical Essay - Climate Policy\n\nClimate policy is essential to address global warming. Governments must balance economic growth\nand environmental protection.\n\nPolicies such as carbon taxes can reduce emissions. However, they may increase costs for\nbusinesses.\n\nInternational cooperation is necessary for effective climate action.\n\nIn conclusion, strong and balanced policies are required to combat climate change.",
+    "rubric_categories": [
+      {
+        "name": "Argument Structure",
+        "description": "Evaluates the logical organization and presentation of the main argument or points."
+      },
+      {
+        "name": "Content & Development",
+        "description": "Assesses the quality of ideas, depth of discussion, and effectiveness of supporting evidence."
+      },
+      {
+        "name": "Clarity & Cohesion",
+        "description": "Examines the readability of the writing, the logical flow between ideas, and the connection of paragraphs."
+      },
+      {
+        "name": "Grammar & Mechanics",
+        "description": "Reviews the correctness of spelling, punctuation, capitalization, and grammatical usage."
+      }
+    ],
+    "status": "complete",
+    "feedback_items": [
+      {
+        "id": "4add91d8",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Content & Development",
+        "excerpt": "Online learning has become popular in recent years. It allows students to study from anywhere and at their own pace.",
+        "explanation": "This statement is very broad. To strengthen your argument, consider introducing specific trends, statistics, or reasons for this popularity. What specific evidence could you use to support the claim that online learning has become popular?"
+      },
+      {
+        "id": "636674e0",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Content & Development",
+        "excerpt": "Uniforms are boring and do not let students express themselves. Many students feel unhappy.",
+        "explanation": "While personal expression is a valid point, using words like 'boring' and 'unhappy' without further elaboration or evidence makes the argument less persuasive. How could you provide more concrete examples or explore the psychological impact to strengthen this claim?"
+      },
+      {
+        "id": "10497492",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Grammar & Mechanics",
+        "excerpt": "technology is everywhere people use phone computer everyday it is good but also bad we need balance",
+        "explanation": "This sentence is a run-on and lacks proper capitalization and punctuation. To improve readability and clarity, how can you break this into multiple sentences and add appropriate punctuation and capitalization?"
+      },
+      {
+        "id": "cf90efff",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Clarity & Cohesion",
+        "excerpt": "One advantage of online learning is flexibility. Students can access materials anytime. However, it may lead to lack of discipline.",
+        "explanation": "The transition from discussing the advantage of flexibility to the potential disadvantage of lack of discipline is a bit abrupt. How could you create a smoother transition between these two contrasting ideas, perhaps by introducing a connecting phrase or sentence?"
+      },
+      {
+        "id": "adf69cf2",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Argument Structure",
+        "excerpt": "Some people say uniforms are good because they make students equal. But I still think they are bad.",
+        "explanation": "You acknowledge a counter-argument but immediately dismiss it without offering a detailed rebuttal or further explanation of why you still think they are bad despite the equality point. How can you more effectively address and refute opposing viewpoints to strengthen your own argument?"
+      },
+      {
+        "id": "dd2a740f",
+        "document_title": "Collection of Student Essays",
+        "rubric_category": "Content & Development",
+        "excerpt": "Policies such as carbon taxes can reduce emissions. However, they may increase costs for businesses.",
+        "explanation": "This is a good example of a policy, but the essay could benefit from a deeper analysis of its implications. What are the specific mechanisms by which carbon taxes reduce emissions, and what are the detailed economic impacts or potential solutions to mitigate increased costs for businesses?"
+      }
+    ],
+    "feedback_count": 6,
+    "is_truncated": false,
+    "error_message": null,
+    "created_at": "2026-03-21T11:12:27.467606+00:00",
+    "file_path": "/Users/minhthao/Documents/ai-agent/generative-ui-examples/agent/uploads/doc-669bebc7.pdf"
   }
 ]
